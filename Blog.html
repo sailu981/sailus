@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Professional Blog</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css" />
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick-theme.css" />
+<style>
+body {
+font-family: 'Arial', sans-serif;
+margin: 0;
+padding: 0;
+background-color: #040404; /* Dark background color */
+color: #e8e3e8; /* Light text color */
+scroll-behavior: smooth;
+scroll-padding-top: 2rem;
+box-sizing: border-box;
+}
+
+:root {
+--container-color: #0b0d0f; /* Darker container color */
+--second-color: #0f0e0f; /* Blue accent color */
+--text-color: #ecf0f1; /* Light text color */
+--bg-color: #100f0f; /* Dark background color */
+}
+
+::selection {
+color: var(--bg-color);
+background: var(--second-color);
+}
+
+a {
+text-decoration: none;
+color: #0d0c0d; /* Blue link color */
+}
+
+li {
+list-style: none;
+}
+
+img {
+width: 100%;
+}
+
+section {
+padding: 3rem 0 2rem;
+}
+
+.container {
+max-width: 1068px;
+margin: auto;
+width: 100%;
+background:linear-gradient(rgba(181, 9, 9, 0.7),rgba(175, 22, 22, 0.7))url(sailu/pg.png); /* Darker container color */
+padding: 20px;
+border-radius: 10px; /* Rounded corners for container */
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+a {
+color: #fff;
+}
+
+header {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+z-index: 200;
+}
+
+header.shadow {
+background: var(--bg-color);
+box-shadow: 0 1px 4px hsl(0 4% 14% / 10%);
+transition: .5s;
+}
+
+header.shadow .logo {
+color: var(--text-color);
+}
+
+.nav {
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 18px 0;
+}
+
+.logo {
+font-size: 1.5rem;
+font-weight: 600;
+color: var(--bg-color);
+}
+
+.logo span {
+color: var(--second-color);
+}
+
+.login {
+padding: 8px 14px;
+text-transform: uppercase;
+font-weight: 500;
+border-radius: 4px;
+background: var(--second-color);
+color: var(--bg-color);
+}
+
+.login:hover {
+background: hsl(199, 98%, 56%);
+transition: .5s;
+}
+
+.home {
+width: 100%;
+min-height: 440px;
+background: url("images/banner2.png");
+display: grid;
+justify-content: center;
+align-items: center;
+}
+
+.home-text {
+color: var(--bg-color);
+text-align: center;
+}
+
+.home-title {
+font-size: 3.5rem;
+}
+
+.home-subtitle {
+font-size: 1rem;
+font-weight: 400;
+}
+
+.about {
+position: relative;
+width: 100%;
+display: flex !important;
+justify-content: center;
+align-items: center;
+}
+
+.about .contentBx {
+max-width: 50%;
+width: 50%;
+text-align: left;
+padding-right: 40px;
+}
+
+.titleText {
+font-weight: 600;
+color: #111;
+font-size: 2rem;
+margin-bottom: 10px;
+}
+
+.title-text {
+color: #111;
+font-size: 1em;
+}
+
+.about .imgBx {
+position: relative;
+min-width: 50%;
+width: 50%;
+min-height: 500px;
+}
+
+.btn2 {
+position: relative;
+display: inline-block;
+margin-top: 30px;
+padding: 10px 30px;
+background: #fff;
+border: .8px solid #111;
+color: #333;
+text-decoration: none;
+transition: 0.5s;
+}
+
+.btn2:hover {
+background-color: var(--second-color);
+border: none;
+color: #fff;
+}
+
+.post-filter {
+display: flex;
+justify-content: center;
+align-items: center;
+column-gap: 1.5rem;
+margin-top: 2rem !important;
+}
+
+.filter-item {
+font-size: 0.9rem;
+font-weight: 500;
+cursor: pointer;
+}
+
+.active-filter {
+background: var(--second-color);
+color: var(--bg-color);
+padding: 4px 10px;
+border-radius: 4px;
+}
+
+.post {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(280px, auto));
+justify-content: center;
+gap: 1.5rem;
+}
+
+.post-box {
+background: var(--bg-color);
+box-shadow: 0 4px 14px hsl(35deg 25% 15% / 10%);
+padding: 15px;
+border-radius: 0.5rem;
+}
+
+.post-img {
+width: 100%;
+height: 200px;
+object-fit: cover;
+object-position: center;
+border-radius: 0.5rem;
+}
+
+.category {
+font-size: 0.9rem;
+font-weight: 500;
+text-transform: uppercase;
+color: var(--second-color);
+}
+
+.post-title {
+font-size: 1.3rem;
+font-weight: 600;
+color: var(--text-color);
+display: -webkit-box;
+-webkit-line-clamp: 2;
+-webkit-box-orient: vertical;
+overflow: hidden;
+}
+
+.post-date {
+display: flex;
+font-size: 0.875rem;
+text-transform: uppercase;
+margin-top: 4px;
+font-weight: 400;
+}
+
+.post-description {
+font-size: 0.9rem;
+line-height: 1.5rem;
+margin: 5px 0 10px;
+display: -webkit-box;
+-webkit-line-clamp: 2;
+-webkit-box-orient: vertical;
+overflow: hidden;
+}
+
+.profile {
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+.profile-img {
+width: 40px;
+height: 40px;
+object-fit: cover;
+object-position: center;
+border-radius: 50%;
+}
+
+.profile-name {
+font-size: 0.9rem;
+color: var(--text-color);
+font-weight: 600;
+}
+
+.slick-slider {
+margin-top: 20px;
+}
+
+.slick-slide img {
+border-radius: 15px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+width: 100%;
+height: auto;
+}
+
+nav {
+background-color: #34495e; /* Darker navigation bar color */
+padding: 10px;
+text-align: center;
+}
+
+nav a {
+color: #ecf0f1;
+margin: 0 15px;
+text-decoration: none;
+font-weight: bold;
+transition: color 0.3s ease;
+}
+
+nav a:hover {
+color: #3498db;
+}
+
+.tab-content {
+padding: 20px;
+}
+
+h2,
+h3 {
+color: #3498db;
+}
+
+/* Add hover effect to nav links */
+nav a:hover {
+color: #3498db;
+transform: scale(1.1);
+transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* Add animation to home-title */
+.home-title {
+font-size: 3.5rem;
+animation: bounce 1s infinite alternate;
+}
+
+@keyframes bounce {
+0% {
+transform: translateY(0);
+}
+
+100% {
+transform: translateY(-10px);
+}
+}
+
+/* Add hover effect to btn2 */
+.btn2:hover {
+background-color: var(--second-color);
+border: none;
+color: #fff;
+transform: translateY(-2px);
+transition: background-color 0.5s ease, transform 0.5s ease;
+}
+
+/* Add hover effect to post-box */
+.post-box:hover {
+transform: scale(1.03);
+transition: transform 0.3s ease;
+}
+
+/* Add hover effect to filter-item */
+.filter-item:hover {
+color: var(--second-color);
+transition: color 0.3s ease;
+}
+
+/* Add hover effect to slick-slider images */
+.slick-slide img:hover {
+transform: scale(1.1);
+transition: transform 0.5s ease;
+}
+</style>
+</head>
+
+<body>
+<header>
+<div class="nav container">
+<div class="logo">Sailu's Blog</div>
+<nav>
+</nav>
+</div>
+</header>
+
+<div class="home" id="home" style="min-height: 300px;">
+<div class="home-text">
+<h1 class="home-title" style="color: #ecf0f1;">Welcome to Sailu's Blog</h1>
+<p class="home-subtitle" style="color: #ecf0f1;">Explore a world of creativity and knowledge</p>
+</div>
+</div>
+
+
+<div class="container">
+<ul class="nav nav-tabs" id="myTabs">
+<li class="nav-item">
+<a class="nav-link active" data-toggle="tab" href="#about">About Me</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-toggle="tab" href="#contact">Contact</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-toggle="tab" href="#skills">Skills</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-toggle="tab" href="#projects">Projects</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-toggle="tab" href="#hobbies">Hobbies</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" data-toggle="tab" href="#slider">Slider</a>
+</li>
+</ul>
+
+<div class="tab-content">
+<div class="tab-pane fade show active" id="about">
+<section>
+<h2>About Me</h2>
+<p>Welcome to Sailu's blog! My name is Sailaja, and I'm an undergraduate student at MRCET who is interested in business technology. This blog serves as a creative outlet for me, combining academic writing with personal reflections. Between lectures and late-night study sessions, reading books and listening to music, which I incorporate into my academic life.Sailu's Blog is more than just a venue; it's a community for students, curious minds, and anybody looking for a balance of academics and personal development. Let us experience the fascinating tapestry of university life together. Thank you for taking part in our trip!</p>
+</section>
+</div>
+
+<div class="tab-pane fade" id="contact">
+<section class="contact-info">
+<h2>Contact Information</h2>
+<button class="btn btn-primary mb-3 collapse-section" data-toggle="collapse" data-target="#contactDetails">Show Contact Details</button>
+<div id="contactDetails" class="collapse">
+<ul>
+<li><strong>Email:</strong> <a href="mailto:your.email@example.com">chsailu634@gmail.com</a></li>
+<li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/yourprofile" target="_blank">LinkedIn Profile</a></li>
+<li><strong>Phone:</strong> 9989643072</li>
+</ul>
+</div>
+<form>
+<div class="form-group">
+<label for="message">Send me a message:</label>
+<textarea class="form-control" id="message" rows="3"></textarea>
+</div>
+<button type="submit" class="btn btn-primary">Send Message</button>
+</form>
+</section>
+</div>
+
+<div class="tab-pane fade" id="skills">
+<section class="skills">
+<h2>Skills</h2>
+<ul>
+<li><strong>Technical Skills:</strong> java, linux , python</li>
+<li><strong>Soft Skills:</strong> Time management, problem solving, teamwork and collaboration, leadership</li>
+</ul>
+</section>
+</div>
+
+<div class="tab-pane fade" id="projects">
+<section>
+<h2>Projects</h2>
+<article>
+<h3>nft marketplace</h3>
+<p><strong>Role:</strong> backend</p>
+<p><strong>Description:</strong> NFT, or Non-Fungible Token, marketplaces have emerged as platforms where digital assets, often linked to art, music, videos, or other digital content, are bought and sold using blockchain technology. Each NFT is unique and irreplaceable, providing proof of ownership and authenticity. The blockchain ensures the transparency and security of transactions.</p>
+</article>
+<article>
+<h3>packet tracer </h3>
+<p><strong>Role:</strong> backend</p>
+<p><strong>Description:</strong> Packet Tracer is a network simulation tool developed by Cisco Systems for educational and training purposes. It provides a virtual environment where users can design, configure, and troubleshoot computer networks. Key features include device emulation for various Cisco devices (routers, switches, etc.), support for multiple networking protocols, and a user-friendly graphical interface.</p>
+</article>
+</section>
+</div>
+
+<div class="tab-pane fade" id="hobbies">
+<section>
+<h2>Hobbies and Interests</h2>
+<p>Outside of work, I enjoy painting, reading. They help me maintain a healthy work-life balance.</p>
+<p>Some additional hobbies include watching movies and listening to music</p>
+</section>
+</div>
+<!-- Added a new tab for the Slider -->
+<div class="tab-pane fade" id="slider">
+<section class="slick-slider">
+<div><img src="bg.jpg" alt="Slide 1"></div>
+<div><img src="bg2.jpg" alt="Slide 2"></div>
+<!-- Add more images as needed -->
+</section>
+</div>
+</div>
+</div>
+
+<!-- Bootstrap JS and Popper.js -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<!-- Slick Carousel JS -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+
+<script>
+$(document).ready(function () {
+$('.slick-slider').slick({
+slidesToShow: 1,
+slidesToScroll: 1,
+autoplay: true,
+autoplaySpeed: 2000,
+dots: true,
+arrows: false
+});
+
+// Smooth scrolling for anchor links
+$('a[href^="#"]').on('click', function (event) {
+event.preventDefault();
+$('html, body').animate({
+scrollTop: $($.attr(this, 'href')).offset().top
+}, 500);
+});
+
+// Toggle collapse for contact details
+$('.collapse-section').click(function () {
+$(this).text(function (i, text) {
+return text === "Show Contact Details" ? "Hide Contact Details" : "Show Contact Details";
+});
+});
+
+// Change navbar style on scroll
+$(window).scroll(function () {
+if ($(this).scrollTop() > 50) {
+$('header').addClass('shadow');
+} else {
+$('header').removeClass('shadow');
+}
+});
+});
+</script>
+</body>
+
+</html>
